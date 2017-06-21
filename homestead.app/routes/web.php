@@ -22,8 +22,12 @@ Route::get('/', function () {
 // Route::any('search',function(){
 // 	return view('search');
 // });
-
 Route::post('/search','searchController@index');
-Auth::routes();
+Route::get('/search','searchController@login');
+Route::get('/search2','searchQ@searchQ');
+//Route::get('/search','searchQ@searchQ');
+// Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/searchQueue','searchController@searchQueue');
