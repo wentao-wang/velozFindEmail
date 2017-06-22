@@ -21,41 +21,36 @@ class searchController extends Controller{
 		}
 
 			// some code
-			  // echo("suc");
-		$email="";
+			  // echo("succ");
+		$userName="";
 		$password="";
 		$internalCompany;
-		if(isset($_POST['email'])) $email=$_POST['email'];
+		if(isset($_POST['userName'])) $userName=$_POST['userName'];
 		if(isset($_POST['password'])) $password=$_POST['password'];
 		// echo($_POST['internalCompany']);
 		if($_POST['internalCompany']=="0") $internalCompany='CT';
 		if($_POST['internalCompany']=="1") $internalCompany='BHC';
-		$lkinid=date("m-d H:i:s");
+		$userId=$_POST['userName'];
 
 		session_start();
 		$_SESSION['internalCompany']=$internalCompany;
-		$_SESSION['lkinid']=$lkinid;
+		$_SESSION['userId']=$userId;
 
-		$sql1='select * from Linkedin_Account';
-		$result=mysqli_query($con, $sql1 );
-			   // echo (mysqli_fetch_array($result)['1']);
-				
-			   $sql2='insert into Linkedin_Account values("'.$lkinid.'","'.$email.'","'.$password.'");';
-			   // // $sql2= 'insert into Linkedin_Account values(5,"test","password");';
+		$sql='select user_id from User where user_name="'.$userName.'" and user_password="'.$password.'";';
+		$result=mysqli_query($con,$sql);
+		if($userName=mysqli_fetch_row($result)){
+			return view("search");
+		}
+		// var_dump( mysqli_fetch_row($result));
 
-			   $result=mysqli_query($con,$sql2);
+		// var_dump($_SESSION);
 
-			   // if($result){
-			   // 	echo("add");
-			   // }else{
-			   // 	echo("fail add");
-			   // }
-
-
-
-		mysqli_close($con);
-
-		return view("search");
+		
+		// $sql2='insert into Linkedin_Account values("'.$lkinid.'","'.$email.'","'.$password.'");';
+		// $result=mysqli_query($con,$sql2);
+		// mysqli_close($con);
+		echo "<script language=\"JavaScript\">alert(\"Wrong username or password\");</script>";
+		return view("welcome");
 	}
 
 	public function login()

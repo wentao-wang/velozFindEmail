@@ -8,7 +8,7 @@
 <div class="container">
 	<div class="row">
 		<div name="theSearch"> 
-			Title (required):<br>
+			Keyword (required):<br>
 			<input type='text' name='title' id ="title" required="required"><br><br>
 			City:<br>
 			<input type='text' name='city' id='city'><br><br>
@@ -50,7 +50,7 @@ $('#ref').click(function(){
     								htmltext+=response[i][j];
     								htmltext+="</td>";
     							}
-    							htmltext+="<td width='800'>result</td></tr>";
+    							htmltext+="<td width='800'><a target='_blank' href='/result'>result</a></td></tr>";
     						}
     						htmltext+="</tbody></table></center>";
     						$('#appendArea').html(htmltext);
@@ -85,7 +85,7 @@ $('#ref').click(function(){
     								htmltext+=response[i][j];
     								htmltext+="</td>";
     							}
-    							htmltext+="<td width='800'>result</td></tr>";
+    							htmltext+="<td width='800'><a target='_blank' href='/result'>result</a></td></tr>";
     						}
     						htmltext+="</tbody></table></center>";
     						$('#appendArea').html(htmltext);
@@ -144,7 +144,7 @@ $('#ref').click(function(){
     								htmltext+=response[i][j];
     								htmltext+="</td>";
     							}
-    							htmltext+="<td width='800'>result</td></tr>";
+    							htmltext+="<td width='800'><a target='_blank' href='/result'>result</a></td></tr>";
     						}
     						htmltext+="</tbody></table></center>";
     						$('#appendArea').html(htmltext);

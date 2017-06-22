@@ -92,9 +92,9 @@
             </div><br><br><br>
             <div >
                 <form action="/search" method="post"> 
-                    <b>Linkedin Sign in</b><br><br>
+                    <b>User Sign in</b><br><br>
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <input type="text" name="email" placeholder=" Email" required="required">&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <input type="text" name="userName" placeholder=" Name" required="required">&nbsp&nbsp&nbsp&nbsp&nbsp
                     <input type="password" name="password" placeholder=" Password" required="required"><br><br>
                     <select name="internalCompany" required> 
                         <option value="">---Select Internal Company---</option>
