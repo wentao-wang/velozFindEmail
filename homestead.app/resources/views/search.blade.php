@@ -50,7 +50,9 @@ $('#ref').click(function(){
     								htmltext+=response[i][j];
     								htmltext+="</td>";
     							}
-    							htmltext+="<td width='800'><a target='_blank' href='/result'>result</a></td></tr>";
+    							
+    					htmltext+="<td width='800'><a target='_blank' href='/result?id="+response[i][0]+"&status="+response[i][2]+"'>result</a></td></tr>";
+
     						}
     						htmltext+="</tbody></table></center>";
     						$('#appendArea').html(htmltext);
@@ -85,7 +87,7 @@ $('#ref').click(function(){
     								htmltext+=response[i][j];
     								htmltext+="</td>";
     							}
-    							htmltext+="<td width='800'><a target='_blank' href='/result'>result</a></td></tr>";
+    							htmltext+="<td width='800'><a target='_blank' href='/result?id="+response[i][0]+"&status="+response[i][2]+"'>result</a></td></tr>";
     						}
     						htmltext+="</tbody></table></center>";
     						$('#appendArea').html(htmltext);
@@ -144,7 +146,7 @@ $('#ref').click(function(){
     								htmltext+=response[i][j];
     								htmltext+="</td>";
     							}
-    							htmltext+="<td width='800'><a target='_blank' href='/result'>result</a></td></tr>";
+    							htmltext+="<td width='800'><a target='_blank' href='/result?id="+response[i][0]+"&status="+response[i][2]+"'>result</a></td></tr>";
     						}
     						htmltext+="</tbody></table></center>";
     						$('#appendArea').html(htmltext);

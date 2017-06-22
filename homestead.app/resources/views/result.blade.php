@@ -83,6 +83,11 @@
     
         
 this is the result!
+<script type='text/javascript'>
+alert('test');
+// alert(request.getParameter("id"));
+
+</script>
        
 </body>
 </html>
