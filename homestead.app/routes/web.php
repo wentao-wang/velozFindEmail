@@ -28,6 +28,8 @@ Route::get('/result', function () {
 Route::post('/search','searchController@index');
 Route::get('/search','searchController@login');
 Route::get('/search2','searchQ@searchQ');
+Route::get('/return','returnResult@ReturnResult');
+
 //Route::get('/search','searchQ@searchQ');
 // Auth::routes();
 

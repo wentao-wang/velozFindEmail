@@ -60,7 +60,7 @@
         }
 
         .title {
-            font-size: 80px;
+            font-size: 50px;
             margin-top: 0px
         }
 
@@ -80,14 +80,83 @@
     </style>
 </head>
 <body>
+
+
+
+    <script type='text/javascript'>
+        $(document).ready(function(){
+        // alert('test');
+        function GetRequest(strName)
+        {
+           var strHref = window.location.href; 
+           var intPos = strHref.indexOf("?");  
+           var strRight = strHref.substr(intPos + 1);
+           var arrTmp = strRight.split("&"); 
+           for(var i = 0; i < arrTmp.length; i++) 
+           { 
+             var arrTemp = arrTmp[i].split("="); 
+             if(arrTemp[0].toUpperCase() == strName.toUpperCase()) return arrTemp[1]; 
+         } 
+         return ""; 
+     }
+
+// alert(GetRequest("id"));
+// alert(GetRequest("status"));
+
+if(GetRequest("status")=="pending"){
+    text="<br><br><br><br><br><br><br><br><br><br<br><br><br><br><br><br><center><p class='title'> This search is still pending. Please wait for result.</p><center>";
     
-        
-this is the result!
-<script type='text/javascript'>
-alert('test');
-// alert(request.getParameter("id"));
+    $('#resTable').html(text);
+
+}
+if(GetRequest("status")=="failed"){
+    text="<br><br><br><br><br><br><br><br><br><br<br><br><br><br><br><br><center><p class='title'> This search is failed. Please try others.</p><center>";
+    
+    $('#resTable').html(text);
+
+}
+if(GetRequest("status")=="processing"){
+    text="<br><br><br><br><br><br><br><br><br><br<br><br><br><br><br><br><center><p class='title'> This search is still processing. Please try others.</p><center>";
+    
+    $('#resTable').html(text);
+
+}
+if(GetRequest("status")=="completed"){
+    text="<br><br><center><p class='title'> Result</p><center>";
+    text+="<center><table border='1' width='800'><tbody><tr ><th width='800'>Linkedin</th><th width='800'>Name</th><th width='800'>Title</th><th width='800'>Emails</th></tr>";
+    var searchId= GetRequest("id");
+    $.ajax({
+        type:'GET',
+        url:'/return',
+        data:{searchId:searchId},
+        success:function($response){
+
+            var response=JSON.parse($response);
+           
+            alert(response[2]);
+            
+        }
+
+
+    });
+
+    
+    $('#resTable').html(text);
+
+}
+
+
+
+});
+
+
+
+
 
 </script>
-       
+<div id="resTable">
+
+</div><br><br><br>
+
 </body>
 </html>
