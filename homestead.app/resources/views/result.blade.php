@@ -14,7 +14,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+    <script src="/js/table2CSV.js"></script>
 
+    
     <!-- Styles -->
     <style>
         html, body {
@@ -88,17 +90,17 @@
         // alert('test');
         function GetRequest(strName)
         {
-           var strHref = window.location.href; 
-           var intPos = strHref.indexOf("?");  
-           var strRight = strHref.substr(intPos + 1);
-           var arrTmp = strRight.split("&"); 
-           for(var i = 0; i < arrTmp.length; i++) 
-           { 
-             var arrTemp = arrTmp[i].split("="); 
-             if(arrTemp[0].toUpperCase() == strName.toUpperCase()) return arrTemp[1]; 
-         } 
-         return ""; 
-     }
+         var strHref = window.location.href; 
+         var intPos = strHref.indexOf("?");  
+         var strRight = strHref.substr(intPos + 1);
+         var arrTmp = strRight.split("&"); 
+         for(var i = 0; i < arrTmp.length; i++) 
+         { 
+           var arrTemp = arrTmp[i].split("="); 
+           if(arrTemp[0].toUpperCase() == strName.toUpperCase()) return arrTemp[1]; 
+       } 
+       return ""; 
+   }
 
 // alert(GetRequest("id"));
 // alert(GetRequest("status"));
@@ -123,7 +125,7 @@ if(GetRequest("status")=="processing"){
 }
 if(GetRequest("status")=="completed"){
     text="<br><br><center><p class='title'> Result</p><center>";
-    text+="<center><table border='1' width='800' height='300px'><tbody><tr ><th width='800'>Linkedin</th><th width='800'>Name</th><th width='800'>Title</th><th width='800'>Emails</th></tr>";
+    text+="<center><br><table border='1' width='800' height='300px' id='resultTable'><tbody><tr ><th width='800'>Linkedin</th><th width='800'>Name</th><th width='800'>Title</th><th width='800'>Emails</th></tr>";
     var searchId= GetRequest("id");
     $.ajax({
         type:'GET',
@@ -132,7 +134,7 @@ if(GetRequest("status")=="completed"){
         success:function($response){
 
             var response=JSON.parse($response);
-           
+
             // alert(response[3][2]);
 
             for(var i = 0; i<response[0].length;i++){
@@ -152,33 +154,47 @@ if(GetRequest("status")=="completed"){
                     text+=response[3][i][0];
                     text+="</td></tr>";
                     for(var j=1; j<response[3][i].length;j++){
-                    text+="<tr><td></td><td></td><td></td><td>";
-                    text+=response[3][i][j];
-                    text+="</td></tr>";
+                        text+="<tr><td></td><td></td><td></td><td>";
+                        text+=response[3][i][j];
+                        text+="</td></tr>";
                     }
                 }
-
-
-
-                    
-                
-                
-
-
 
             }
             text+="</tbody></table></center>"
             $('#resTable').html(text);
 
+
+
+// alert("csv");
+    $('#resultTable').each(function () {
+        var $table = $(this);
+
+        var $button = $("<button type='button'>");
+        $button.text("Export to CSV");
+        $button.insertAfter($('.title'));
+
+        $button.click(function () {
+
+            var csv = $table.table2CSV({delivery: 'value'});
+            // alert("csv");
+            window.location.href = 'data:text/csv;charset=UTF-8,'+ encodeURIComponent(csv);
+
+        });
+    });
+
+
+
         }
 
+       
 
     });
 
-    
-    
+   
 
 }
+
 
 
 
