@@ -123,7 +123,7 @@ if(GetRequest("status")=="processing"){
 }
 if(GetRequest("status")=="completed"){
     text="<br><br><center><p class='title'> Result</p><center>";
-    text+="<center><table border='1' width='800'><tbody><tr ><th width='800'>Linkedin</th><th width='800'>Name</th><th width='800'>Title</th><th width='800'>Emails</th></tr>";
+    text+="<center><table border='1' width='800' height='300px'><tbody><tr ><th width='800'>Linkedin</th><th width='800'>Name</th><th width='800'>Title</th><th width='800'>Emails</th></tr>";
     var searchId= GetRequest("id");
     $.ajax({
         type:'GET',
@@ -133,15 +133,50 @@ if(GetRequest("status")=="completed"){
 
             var response=JSON.parse($response);
            
-            alert(response[2]);
-            
+            // alert(response[3][2]);
+
+            for(var i = 0; i<response[0].length;i++){
+                text+="<tr><td width='800'>";
+                text+=response[0][i];
+                text+="</td><td width='800'>";
+                text+=response[1][i];
+                text+="</td><td width='800'>";
+                text+=response[2][i]; 
+                text+="</td><td width='800'>";
+                if(response[3][i].length==0){
+                    text+="not found</td></tr>";
+                }else if(response[3][i].length==1){
+                    text+=response[3][i][0];
+                    text+="</td></tr>";
+                }else{
+                    text+=response[3][i][0];
+                    text+="</td></tr>";
+                    for(var j=1; j<response[3][i].length;j++){
+                    text+="<tr><td></td><td></td><td></td><td>";
+                    text+=response[3][i][j];
+                    text+="</td></tr>";
+                    }
+                }
+
+
+
+                    
+                
+                
+
+
+
+            }
+            text+="</tbody></table></center>"
+            $('#resTable').html(text);
+
         }
 
 
     });
 
     
-    $('#resTable').html(text);
+    
 
 }
 

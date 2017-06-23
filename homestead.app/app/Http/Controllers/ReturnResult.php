@@ -43,7 +43,7 @@ class ReturnResult extends Controller{
 		$response2=array();
 		foreach ($response as $url) {
 			$sql2='select customer_name from Customer where customer_linkedin_url="'.$url.'";';
-						
+
 			$result2=mysqli_query($con, $sql2 );
 			$response2[]=mysqli_fetch_row($result2);
 		}
@@ -51,20 +51,34 @@ class ReturnResult extends Controller{
 		$response3=array();
 		foreach ($response as $url) {
 			$sql3='select customer_title from Customer where customer_linkedin_url="'.$url.'";';
-						
+
 			$result3=mysqli_query($con, $sql3 );
 			$response3[]=mysqli_fetch_row($result3);
 		}
 
+		$response4=array();
+		foreach ($response as $url) {
+			$sql4='select email_address from Email where customer_linkedin_url="'.$url.'";';
+			$email=array();		
+			$result4=mysqli_query($con, $sql4 );
+			while($row = mysqli_fetch_row($result4)){
+				$email[]=$row[0];
+			}
+			
+			array_push($response4,$email);
 
-		// foreach ($response as $url) {
+			
+			
+		}
 
-		// 	$response2[]=$url;
-		// }
 
-		$result=array($response,$response2,$response3);
 
-  		echo json_encode($result);
+
+		
+
+		$result=array($response,$response2,$response3,$response4);
+
+		echo json_encode($result);
 
 		mysqli_close($con);
 
