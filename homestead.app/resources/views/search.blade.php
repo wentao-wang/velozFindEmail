@@ -27,6 +27,8 @@
 </div>
 
 <script type="text/javascript">
+
+
 $('#ref').click(function(){
 	$.ajax({
 
@@ -41,9 +43,10 @@ $('#ref').click(function(){
     						var cellCount=response.length;
     						
 
-    						var htmltext="<h4>Search Queue</h4><center><table border='1' width='800'><tbody><tr ><th width='800'>Id</th><th width='800'>Keyword</th><th width='800'>Status</th><th width='800'>Result</th></tr>";
+    						var htmltext="<h4>Search Queue</h4><center><table border='1' width='800'><tbody><tr ><th width='800'>Id</th><th width='800'>Keyword</th><th width='800'>Status</th><th width='800'>Result</th><th width='200'>Delete</th></tr>";
 
     						for(var i=0;i<cellCount;i++){
+    							if(response[i][3]=='0'){
     							htmltext+="<tr>";
     							for(var j=0;j<3;j++){
     								htmltext+="<td width='800'>";
@@ -51,15 +54,31 @@ $('#ref').click(function(){
     								htmltext+="</td>";
     							}
     							
-    					htmltext+="<td width='800'><a target='_blank' href='/result?id="+response[i][0]+"&status="+response[i][2]+"'>result</a></td></tr>";
-
+    					htmltext+="<td width='800'><a target='_blank' href='/result?id="+response[i][0]+"&status="+response[i][2]+"'>result</a></td>";
+    					htmltext+="<td><button class='del'>delete</button></td></tr>";
+    				}
     						}
     						htmltext+="</tbody></table></center>";
     						$('#appendArea').html(htmltext);
     						// alert(cellCount);
+    					
+
+    							$('.del').click(function(){
+    								alert("del");
+
+
+    							});
+
+
     					}
+		});
 });
-});
+
+
+
+
+
+
 	
 	$(document).ready(function() {
 		$.ajax({
@@ -78,30 +97,49 @@ $('#ref').click(function(){
     						
     						
 
-    						var htmltext="<h4>Search Queue</h4><center><table border='1' width='800'><tbody><tr ><th width='800'>Id</th><th width='800'>Keyword</th><th width='800'>Status</th><th width='800'>Result</th></tr>";
+    						var htmltext="<h4>Search Queue</h4><center><table border='1' width='800'><tbody><tr ><th width='800'>Id</th><th width='800'>Keyword</th><th width='800'>Status</th><th width='800'>Result</th><th width='200'>Delete</th></tr>";
 
     						for(var i=0;i<cellCount;i++){
-    							htmltext+="<tr>";
-    							for(var j=0;j<3;j++){
-    								htmltext+="<td width='800'>";
-    								htmltext+=response[i][j];
-    								htmltext+="</td>";
-    							}
-    							htmltext+="<td width='800'><a target='_blank' href='/result?id="+response[i][0]+"&status="+response[i][2]+"'>result</a></td></tr>";
+								if(response[i][3]=='0'){
+
+	    							htmltext+="<tr>";
+	    							for(var j=0;j<3;j++){
+	    								
+	    								htmltext+="<td width='800'>";
+	    								htmltext+=response[i][j];
+	    								htmltext+="</td>";
+	    							}
+	    							htmltext+="<td width='800'><a target='_blank' href='/result?id="+response[i][0]+"&status="+response[i][2]+"'>result</a></td>";
+	    							htmltext+="<td><button class='del'>delete</button></td></tr>";
+    						
+								}
+
+
     						}
     						htmltext+="</tbody></table></center>";
     						$('#appendArea').html(htmltext);
     						// alert(cellCount);
+
+
+
+    						$('.del').click(function(){
+    								alert("del");
+
+
+    							});
+
+
+
     					}
-});
-
-
-
-
-
-
+			});
 
 	});
+
+
+
+
+
+
 
 
 	$('#sub').click(function(){
@@ -137,25 +175,49 @@ $('#ref').click(function(){
 
     						// 	}
 
-    						var htmltext="<h4>Search Queue</h4><center><table border='1' width='800'><tbody><tr ><th width='800'>Id</th><th width='800'>Keyword</th><th width='800'>Status</th><th width='800'>Result</th></tr>";
+    						var htmltext="<h4>Search Queue</h4><center><table border='1' width='800'><tbody><tr ><th width='800'>Id</th><th width='800'>Keyword</th><th width='800'>Status</th><th width='800'>Result</th><th width='200'>Delete</th></tr>";
 
     						for(var i=0;i<cellCount;i++){
+    							if(response[i][3]=='0'){
     							htmltext+="<tr>";
     							for(var j=0;j<3;j++){
     								htmltext+="<td width='800'>";
     								htmltext+=response[i][j];
     								htmltext+="</td>";
     							}
-    							htmltext+="<td width='800'><a target='_blank' href='/result?id="+response[i][0]+"&status="+response[i][2]+"'>result</a></td></tr>";
+    							htmltext+="<td width='800'><a target='_blank' href='/result?id="+response[i][0]+"&status="+response[i][2]+"'>result</a></td>";
+    							htmltext+="<td><button class='del'>delete</button></td></tr>";
+    							}
     						}
     						htmltext+="</tbody></table></center>";
     						$('#appendArea').html(htmltext);
     						// alert(cellCount);
-    					}
-});
 
-	});
-    			</script>
+
+    						$('.del').click(function(){
+    								alert("del");
+
+
+    							});
+
+    					}
+				
+				});
+
+		});
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
 
 @endsection
 

@@ -88,7 +88,7 @@
                  Find Email
              </div>
              <div class="links">
-                <a href="/home">About</a> 
+                <a href="/about">About</a> 
             </div><br><br><br>
             <div >
                 <form action="/search" method="post"> 

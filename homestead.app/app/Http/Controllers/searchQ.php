@@ -46,10 +46,10 @@ class searchQ extends Controller{
 		$userId=$_SESSION['userId'];
 		$internalCompany=$_SESSION['internalCompany'];
 
-		$sql1='insert into Search values("'.$id.'","'.$count.'","'.$title.'","'.$city.'","150","pending","'.$userId.'","'.$internalCompany.'");';
+		$sql1='insert into Search values("'.$id.'","'.$count.'","'.$title.'","'.$city.'","150","pending","'.$userId.'","'.$internalCompany.'",0);';
 		$result=mysqli_query($con, $sql1 );
 
-		$sql2='select search_id,search_keywords,search_progress from Search where user_id="'.$userId.'" and internal_company_id="'.$internalCompany.'";';
+		$sql2='select search_id,search_keywords,search_progress, has_deleted from Search where user_id="'.$userId.'" and internal_company_id="'.$internalCompany.'";';
 
 		// $sql2='select search_id,search_keywords,search_progress from Search where user_id="ryan" and internal_company_id="BHC";';
 
