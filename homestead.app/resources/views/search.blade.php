@@ -80,8 +80,56 @@ $('#ref').click(function(){
 		});
 });
 
-function del($id){
-	alert($id);
+function del(id){
+	// alert(id);
+	$.ajax({
+		type:'GET',
+		url:'/delete',
+		data:{id:id},
+
+		success:function($response){
+			// alert('suc');
+			var response=JSON.parse($response);
+    						// alert("res");
+    						// alert(response);
+
+    						var cellCount=response.length;
+    						
+    						
+    						
+    						
+
+    						var htmltext="<h4>Search Queue</h4><center><table border='1' width='800'><tbody><tr ><th width='800'>Id</th><th width='800'>Keyword</th><th width='800'>Status</th><th width='800'>Result</th><th width='200'>Delete</th></tr>";
+
+    						for(var i=0;i<cellCount;i++){
+								if(response[i][3]=='0'){
+
+	    							htmltext+="<tr>";
+	    							for(var j=0;j<3;j++){
+	    								
+	    								htmltext+="<td width='800'>";
+	    								htmltext+=response[i][j];
+	    								htmltext+="</td>";
+	    							}
+	    							htmltext+="<td width='800'><a target='_blank' href='/result?id="+response[i][0]+"&status="+response[i][2]+"'>result</a></td>";
+	    							htmltext+="<td><button onclick=del('";
+    					htmltext+=response[i][0];
+    					htmltext+="')>delete</button></td></tr>";
+	    							// htmltext+="<td><button class='del'>delete</button></td></tr>";
+    						
+								}
+
+
+    						}
+    						htmltext+="</tbody></table></center>";
+    						$('#appendArea').html(htmltext);
+
+		}
+		
+
+
+
+	});
 
 }
 
@@ -135,11 +183,7 @@ function del($id){
 
 
 
-    						$('.del').click(function(){
-    								alert("del");
-
-
-    							});
+    						
 
 
 
@@ -210,11 +254,7 @@ function del($id){
     						// alert(cellCount);
 
 
-    						$('.del').click(function(){
-    								alert("del");
-
-
-    							});
+    						
 
     					}
 				
