@@ -48,6 +48,12 @@ $('#ref').click(function(){
     						for(var i=0;i<cellCount;i++){
     							if(response[i][3]=='0'){
     							htmltext+="<tr>";
+    							// htmltext+="<td width='800' id=' ";
+    							// htmltext+=response[i][0];
+    							// htmltext+="'>";
+    							// htmltext+=response[i][0];
+    							// htmltext+="</td>";
+
     							for(var j=0;j<3;j++){
     								htmltext+="<td width='800'>";
     								htmltext+=response[i][j];
@@ -55,7 +61,11 @@ $('#ref').click(function(){
     							}
     							
     					htmltext+="<td width='800'><a target='_blank' href='/result?id="+response[i][0]+"&status="+response[i][2]+"'>result</a></td>";
-    					htmltext+="<td><button class='del'>delete</button></td></tr>";
+    					htmltext+="<td><button onclick=del('";
+    					htmltext+=response[i][0];
+    					htmltext+="')>delete</button></td></tr>";
+
+    					
     				}
     						}
     						htmltext+="</tbody></table></center>";
@@ -63,17 +73,17 @@ $('#ref').click(function(){
     						// alert(cellCount);
     					
 
-    							$('.del').click(function(){
-    								alert("del");
-
-
-    							});
+    							
 
 
     					}
 		});
 });
 
+function del($id){
+	alert($id);
+
+}
 
 
 
@@ -110,7 +120,10 @@ $('#ref').click(function(){
 	    								htmltext+="</td>";
 	    							}
 	    							htmltext+="<td width='800'><a target='_blank' href='/result?id="+response[i][0]+"&status="+response[i][2]+"'>result</a></td>";
-	    							htmltext+="<td><button class='del'>delete</button></td></tr>";
+	    							htmltext+="<td><button onclick=del('";
+    					htmltext+=response[i][0];
+    					htmltext+="')>delete</button></td></tr>";
+	    							// htmltext+="<td><button class='del'>delete</button></td></tr>";
     						
 								}
 
@@ -186,7 +199,10 @@ $('#ref').click(function(){
     								htmltext+="</td>";
     							}
     							htmltext+="<td width='800'><a target='_blank' href='/result?id="+response[i][0]+"&status="+response[i][2]+"'>result</a></td>";
-    							htmltext+="<td><button class='del'>delete</button></td></tr>";
+    							htmltext+="<td><button onclick=del('";
+    					htmltext+=response[i][0];
+    					htmltext+="')>delete</button></td></tr>";
+    							// htmltext+="<td><button class='del'>delete</button></td></tr>";
     							}
     						}
     						htmltext+="</tbody></table></center>";
